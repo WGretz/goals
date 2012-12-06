@@ -30,3 +30,7 @@ group :test, :development do
   gem 'minitest-rails-capybara'
   gem "miniskirt"
 end
+
+group :production do
+  gem 'pg'
+end
