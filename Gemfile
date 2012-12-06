@@ -5,8 +5,6 @@ gem 'rails', '3.2.9'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
-
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -26,6 +24,7 @@ gem 'haml'
 gem 'bootstrap-sass'
 
 group :test, :development do
+  gem 'sqlite3'
   gem 'minitest-rails', git: "git://github.com/blowmage/minitest-rails.git"
   gem 'minitest-rails-capybara'
   gem "miniskirt"
