@@ -23,7 +23,7 @@ $(function(){
       { _method: that.data("action"), authenticity_token: window.token },
       function(data){
         if (that.data("action") == "put") {
-          that.html( "X" )
+          that.html( $("<i>").addClass("icon-ok") )
           that.data("action", "delete")
         } else {
           that.html( "&nbsp;" )

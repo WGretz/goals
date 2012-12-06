@@ -14,7 +14,10 @@
             = goal.name
           - 6.downto(0) do |i|
             = content_tag :td, class: "goal-available", data: { date: (Date.today - i).to_s, action: ( goal.entries_on_date?( Date.today-i ) ? "delete" : "put" ), goal_id: goal.id, title: goal.name } do
-              = raw goal.entries_on_date?( Date.today-i ) ? "X" : "&nbsp"
+              -if goal.entries_on_date?( Date.today-i )
+                %i.icon-ok
+              -else
+                &nbsp
           %td.disappear
             Checks: 
             =goal.goal_entries.count

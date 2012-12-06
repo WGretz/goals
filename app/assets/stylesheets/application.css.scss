@@ -16,10 +16,15 @@
 #goals table {
   margin: 0;
   width: 100%;
+  border-collapse: separate;
+  border-spacing: 2px;
 }
 #goals table .goal-available{
   cursor: pointer;
   background: #E2DDB5;
+}
+#goals td {
+  text-align: center;
 }
 @media only screen and (max-width: 800px) {
   #goals table, 
