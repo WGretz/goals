@@ -22,6 +22,8 @@ end
 
 gem 'jquery-rails'
 gem 'devise'
+gem 'haml'
+gem 'bootstrap-sass'
 
 group :test, :development do
   gem 'minitest-rails', git: "git://github.com/blowmage/minitest-rails.git"

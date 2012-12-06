@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
+
 $(function(){
   
   $(".goal-available").click(function(){
@@ -25,7 +26,7 @@ $(function(){
           that.html( "X" )
           that.data("action", "delete")
         } else {
-          that.html( " " )
+          that.html( "&nbsp;" )
           that.data("action", "put")
         }
     })

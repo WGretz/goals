@@ -1,0 +1,13 @@
+.container-fixed
+  .row
+    .span
+      %h1 Will's Goals
+  .row
+    .span12
+      -if notice
+        %p.notice= notice
+      -if alert
+        %p.alert= alert
+    =link_to "Register", new_user_registration_path
+    =link_to "Login", new_user_session_path
+    

@@ -1,0 +1,27 @@
+%script{type:"text/javascript"}
+  window.token = '<%= form_authenticity_token %>'
+= link_to "Add Goal", new_goal_path
+#goals
+  - if !@goals.blank?
+    %table
+      %tr.disappear
+        %th
+        - 6.downto(0) do |i|
+          %th= (Date.today - i).strftime("%m/%d")
+      - for goal in @goals
+        %tr
+          %th
+            = goal.name
+          - 6.downto(0) do |i|
+            = content_tag :td, class: "goal-available", data: { date: (Date.today - i).to_s, action: ( goal.entries_on_date?( Date.today-i ) ? "delete" : "put" ), goal_id: goal.id, title: goal.name } do
+              = raw goal.entries_on_date?( Date.today-i ) ? "X" : "&nbsp"
+          %td.disappear
+            Checks: 
+            =goal.goal_entries.count
+            %br
+            Current Chain: 
+            %br
+            Longest Chain: 
+            = goal.longest_chain
+  -else
+    You have no goals. Why not <%= link_to "create", new_goal_path %> one?
