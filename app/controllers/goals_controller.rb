@@ -1,10 +1,9 @@
 class GoalsController < ApplicationController
   
-  before_filter :find_goal
-  before_filter :authenticate_user
+  before_filter :authenticate_user!
 
   def index
-    @goals = Goal.includes(:goal_entries)
+    @goals = current_user.goals.includes(:goal_entries)
   end
   
   def new
@@ -12,16 +11,12 @@ class GoalsController < ApplicationController
   end
   
   def create
-    @goal = Goal.new( params[:goal] )
+    @goal = current_user.goals.build( params[:goal] )
     if @goal.save
       redirect_to goals_path
     else
       render action: :new
     end
   end
-
-  private
-  def find_goal
-    @goal = Goal.find(params[:id]) if params[:id]
-  end
+  
 end
