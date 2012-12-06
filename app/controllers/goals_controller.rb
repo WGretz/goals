@@ -1,5 +1,7 @@
 class GoalsController < ApplicationController
+  
   before_filter :find_goal
+  before_filter :authenticate_user
 
   def index
     @goals = Goal.includes(:goal_entries)
