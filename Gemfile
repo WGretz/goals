@@ -16,12 +16,13 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
-  gem 'bootstrap-sass'
+  
 end
 
 gem 'jquery-rails'
 gem 'devise'
 gem 'haml'
+gem 'bootstrap-sass'
 
 group :test, :development do
   gem 'sqlite3'
