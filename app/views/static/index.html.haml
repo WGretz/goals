@@ -1,5 +1,5 @@
 .container
-  .row
+  .row.jumbotron
     .span
       %h1 Will's Goals
   .row
@@ -8,6 +8,11 @@
         %p.notice= notice
       -if alert
         %p.alert= alert
-    =link_to "Register", new_user_registration_path
-    =link_to "Login", new_user_session_path
+      %p This Application is based off of <a href="http://joesgoals.com">Joe's Goals</a>.  The original site did everything I wanted it to except for work well on my Iphone. So I took it on myself to rewrite it and learn about responsive design and media queries.  Basic Functionality is included with this release of the application, in the future I want to include:
+      %ul
+        %li negative goals
+        %li multiple entries on a day
+        %li the ability to look at previous days scores.
+        %li ability to archive goals
+      %p If you have any ideas on how I can improve the site feel free to email me at <a href="mailto:will@willgretz.com">Will Gretz</a>.
     

@@ -1,7 +1,8 @@
 %script{type:"text/javascript"}
   window.token = '<%= form_authenticity_token %>'
-= link_to "Add Goal", new_goal_path
-#goals
+.container
+  = link_to "Add Goal", new_goal_path
+.container#goals
   - if !@goals.blank?
     %table
       %tr.disappear
