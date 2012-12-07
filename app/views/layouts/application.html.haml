@@ -10,11 +10,11 @@
     %header
       .container
         .pull-right
-          -if current_user
+          - if current_user
             =link_to "My Goals", goals_path
             Welcome 
             = current_user.email
-          -else 
+          - else 
             =link_to "Register", new_user_registration_path
             =link_to "Login", new_user_session_path
     = yield
