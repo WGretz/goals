@@ -1,7 +1,7 @@
 class Goal < ActiveRecord::Base
   attr_accessible :name, :user_id
   
-  has_many :goal_entries, :order => "occured_on"
+  has_many :goal_entries, :order => "occured_on", dependent: :destroy
   
   def longest_chain
     return goal_entries.count if [1,0].include?( goal_entries.count )
