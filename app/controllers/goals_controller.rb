@@ -10,6 +10,19 @@ class GoalsController < ApplicationController
     @goal = Goal.new
   end
   
+  def edit
+    @goal = current_user.goals.find params[:id]
+  end
+  
+  def update
+    @goal = current_user.goals.find params[:id]
+    if @goal.update_attributes( params[:goal] )
+      redirect_to goals_path
+    else
+      render action: :new
+    end
+  end
+  
   def create
     @goal = current_user.goals.build( params[:goal] )
     if @goal.save

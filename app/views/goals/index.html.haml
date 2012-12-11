@@ -13,6 +13,8 @@
         %tr
           %th
             = goal.name
+            %br
+            = link_to "edit", edit_goal_path( goal )
           - 6.downto(0) do |i|
             = content_tag :td, class: "goal-available", data: { date: (Date.today - i).to_s, action: ( goal.entries_on_date?( Date.today-i ) ? "delete" : "put" ), goal_id: goal.id, title: goal.name } do
               -if goal.entries_on_date?( Date.today-i )

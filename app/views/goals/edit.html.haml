@@ -1,0 +1,8 @@
+.container
+  .row
+    .span12
+      %h2 Edit Goal
+      = bootstrap_form_for @goal do |f|
+        = f.text_field :name
+        = f.submit
+      = button_to "Delete", @goal, confirm: "Are you sure?", method: :delete, class: "btn btn-primary"
