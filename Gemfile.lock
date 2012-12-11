@@ -6,6 +6,12 @@ GIT
       minitest (~> 4.0)
       rails (~> 3.0)
 
+GIT
+  remote: git@github.com:WGretz/bootstrap_forms.git
+  revision: 6d5266701cf39ec18ea74d6cf152e48623103e3b
+  specs:
+    bootstrap_forms (2.0.8)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -161,6 +167,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass
+  bootstrap_forms!
   coffee-rails (~> 3.2.1)
   devise
   haml
