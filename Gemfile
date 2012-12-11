@@ -22,7 +22,7 @@ end
 gem 'jquery-rails'
 gem 'devise'
 gem 'haml'
-gem 'bootstrap_forms', git: 'git@github.com:WGretz/bootstrap_forms.git'
+gem 'bootstrap_forms', git: 'https://github.com/WGretz/bootstrap_forms.git'
 
 group :test, :development do
   gem 'sqlite3'

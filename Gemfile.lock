@@ -7,7 +7,7 @@ GIT
       rails (~> 3.0)
 
 GIT
-  remote: git@github.com:WGretz/bootstrap_forms.git
+  remote: https://github.com/WGretz/bootstrap_forms.git
   revision: 6d5266701cf39ec18ea74d6cf152e48623103e3b
   specs:
     bootstrap_forms (2.0.8)
