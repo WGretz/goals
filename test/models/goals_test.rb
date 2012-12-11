@@ -34,4 +34,12 @@ describe Goal do
     end
   end
   
+  describe "archive!" do
+    it "should set archived to true" do
+      @it.archived.must_equal false
+      @it.archive!
+      @it.archived.must_equal true
+    end
+  end
+  
 end

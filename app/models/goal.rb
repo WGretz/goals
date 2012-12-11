@@ -24,4 +24,9 @@ class Goal < ActiveRecord::Base
     !!goal_entries.group( :occured_on ).count()[ date ]
   end
   
+  def archive!
+    self.archived = true
+    self.save
+  end
+  
 end

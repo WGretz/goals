@@ -5,4 +5,6 @@
       = bootstrap_form_for @goal do |f|
         = f.text_field :name
         = f.submit
+      %h2 Delete Goal
       = button_to "Delete", @goal, confirm: "Are you sure?", method: :delete, class: "btn btn-primary"
+      = button_to "Archive", archive_goal_path( @goal ), confirm: "Are you sure you want to archive this goal?", method: :post, class: "btn btn-primary"

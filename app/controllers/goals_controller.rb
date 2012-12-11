@@ -3,7 +3,7 @@ class GoalsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @goals = current_user.goals.includes(:goal_entries)
+    @goals = current_user.unarchived_goals.includes(:goal_entries)
   end
   
   def new
@@ -11,11 +11,11 @@ class GoalsController < ApplicationController
   end
   
   def edit
-    @goal = current_user.goals.find params[:id]
+    @goal = current_user.unarchived_goals.find params[:id]
   end
   
   def update
-    @goal = current_user.goals.find params[:id]
+    @goal = current_user.unarchived_goals.find params[:id]
     if @goal.update_attributes( params[:goal] )
       redirect_to goals_path
     else
@@ -24,7 +24,7 @@ class GoalsController < ApplicationController
   end
   
   def create
-    @goal = current_user.goals.build( params[:goal] )
+    @goal = current_user.unarchived_goals.build( params[:goal] )
     if @goal.save
       redirect_to goals_path
     else
@@ -33,8 +33,14 @@ class GoalsController < ApplicationController
   end
   
   def destroy
-    @goal = current_user.goals.find params[:id]
+    @goal = current_user.unarchived_goals.find params[:id]
     @goal.delete
+    redirect_to goals_path
+  end
+  
+  def archive
+    @goal = current_user.unarchived_goals.find params[:id]
+    @goal.archive!
     redirect_to goals_path
   end
   
