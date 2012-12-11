@@ -32,4 +32,10 @@ class GoalsController < ApplicationController
     end
   end
   
+  def destroy
+    @goal = current_user.goals.find params[:id]
+    @goal.delete
+    redirect_to goals_path
+  end
+  
 end

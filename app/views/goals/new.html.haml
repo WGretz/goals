@@ -1,7 +1,7 @@
 .container
   .row
     .span6.push3
-    = form_for @goal do |f|
+    = bootstrap_form_for @goal do |f|
       = f.label :name, "Name" 
       = f.text_field :name
       = f.submit "Submit"
