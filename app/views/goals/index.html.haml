@@ -33,3 +33,18 @@
     You have no goals. Why not
     = link_to "create", new_goal_path
     one?
+  %table
+    %tr
+      %th
+      %th{"ng-repeat"=>"date in dates"} {{ date.getMonth()+1 }}/{{ date.getDate() }}
+      %th
+    %tr{"ng-repeat"=>"goal in goals"}
+      %th {{ goal.name }}
+      %td.goal-available{"ng-repeat"=>"date in dates", "ng-bind-html-unsafe" => "goalEntriesForDate( goal, date )", "ng-click"=>"goalEntryClick(goal,date)" }
+      %td.disappear
+        Checks: {{ checkCount( goal ) }}
+        %br
+        Current Chain: {{ currentChain( goal ) }}
+        %br
+        Longest Chain: {{ longestChain( goal ) }}
+  = link_to "Archived Goals", archived_goals_path

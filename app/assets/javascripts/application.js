@@ -33,3 +33,88 @@ $(function(){
   })
   
 })
+
+function pad(number, length) {
+   
+    var str = '' + number;
+    while (str.length < length) {
+        str = '0' + str;
+    }
+    console.log( str )
+   
+    return str;
+
+}
+
+goalsapp = angular.module('goalsapp',['ngResource'])
+
+goalsapp.controller('GoalsCtrl', function GoalsCtrl($scope,Goal,GoalEntry){
+  dates = []
+  date = new Date()
+  for (var i = 6; i >= 0; i--){
+    d = new Date(date.getFullYear(),date.getMonth(),date.getDate()-i)
+    dates.push( d )
+  };
+  $scope.dates = dates
+  
+  $scope.goals = Goal.query()
+  
+  $scope.goal_entries = GoalEntry.query()
+  
+  function checkCount(goal){
+    a = $scope.goal_entries.filter(function(el){
+      return el.goal_id == goal.id
+    })
+    return a.length
+  }
+  
+  $scope.checkCount = checkCount
+  
+  function longestChain( goal){
+    
+    return 0
+  }
+  
+  $scope.longestChain = longestChain
+  
+  function currentChain( goal){
+    
+    return 0
+  }
+  
+  $scope.currentChain = currentChain
+  
+  function goalEntriesForDate( goal, date){
+    d = Date.UTC( date.getFullYear(), date.getMonth(), date.getDate() )
+    if ( $scope.goal_entries.filter(function(el){
+      el_date = Date.parse( el.occured_on )
+      return el.goal_id == goal.id && d == el_date
+    }).length > 0 ){
+      return "<i class='icon-ok'></i>"
+    } else {
+      return "&nbsp;"
+    }
+  }
+  
+  $scope.goalEntriesForDate = goalEntriesForDate
+  
+  function goalEntryClick( goal, date ) {
+    console.log( goal, date )
+  }
+  
+  $scope.goalEntryClick = goalEntryClick
+  
+})
+
+goalsapp.factory('Goal', function ($resource) {
+    return $resource('api/v1/goals/:goalId', {}, {
+        update: {method:'PUT'}
+    });
+});
+
+goalsapp.factory('GoalEntry', function ($resource) {
+    return $resource('api/v1/goal_entries/:goalId', {}, {
+        update: {method:'PUT'}
+    });
+});
+

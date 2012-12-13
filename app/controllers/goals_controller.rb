@@ -44,4 +44,8 @@ class GoalsController < ApplicationController
     redirect_to goals_path
   end
   
+  def archived
+    @goals = current_user.archived_goals
+  end
+  
 end

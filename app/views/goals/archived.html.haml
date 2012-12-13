@@ -1,0 +1,13 @@
+.container
+  .row
+    .span12
+      %table
+        %tr
+          %td Goal Name
+          %td Checks
+          %td Longest Chain
+        - for goal in @goals
+          %tr
+            %td= goal.name
+            %td=goal.goal_entries.count
+            %td= goal.longest_chain
