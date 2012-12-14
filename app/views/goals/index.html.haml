@@ -40,7 +40,7 @@
       %th
     %tr{"ng-repeat"=>"goal in goals"}
       %th {{ goal.name }}
-      %td.goal-available{"ng-repeat"=>"date in dates", "ng-bind-html-unsafe" => "goalEntriesForDate( goal, date )", "ng-click"=>"goalEntryClick(goal,date)" }
+      %td.goal-available{"ng-repeat"=>"date in dates", "ng-bind-html-unsafe" => "goalEntryIconsForDate( goal, date )", "ng-click"=>"goalEntryClick(goal,date)" }
       %td.disappear
         Checks: {{ checkCount( goal ) }}
         %br

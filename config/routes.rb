@@ -11,7 +11,9 @@ Goals::Application.routes.draw do
   end
   namespace :api do
     namespace :v1 do
-      resources :goals
+      resources :goals do
+        resources :goal_entries
+      end
       resources :goal_entries
     end
   end
