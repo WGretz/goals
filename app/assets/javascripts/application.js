@@ -34,32 +34,53 @@ $(function(){
   
 })
 
-function pad(number, length) {
-   
-    var str = '' + number;
-    while (str.length < length) {
-        str = '0' + str;
-    }
-    console.log( str )
-   
-    return str;
-
-}
-
 goalsapp = angular.module('goalsapp',['ngResource'])
 
 goalsapp.controller('GoalsCtrl', function GoalsCtrl($scope,Goal,GoalEntry){
-  dates = []
-  date = new Date()
-  for (var i = 6; i >= 0; i--){
-    d = new Date(date.getFullYear(),date.getMonth(),date.getDate()-i)
-    dates.push( d )
-  };
-  $scope.dates = dates
+  $scope.dates = []
+  $scope.date = new Date()
+  
+  function generateDates(){
+    var dates = []
+    var date = $scope.date
+    for (var i = 6; i >= 0; i--){
+      d = new Date(date.getFullYear(),date.getMonth(),date.getDate()-i)
+      dates.push( d )
+    };
+    $scope.dates = dates
+  }
+  
+  generateDates();
   
   $scope.goals = Goal.query()
   
   $scope.goal_entries = GoalEntry.query()
+  
+  function pad(number, length) {
+      var str = '' + number;
+      while (str.length < length) {
+          str = '0' + str;
+      }
+      return str;
+  }
+  
+  $scope.pad = pad
+  
+  function decreaseDate(){
+    $scope.date = new Date($scope.date.getFullYear(),$scope.date.getMonth(),$scope.date.getDate()-1)
+    console.log( "test" )
+    generateDates();
+  }
+  
+  $scope.decreaseDate = decreaseDate
+  
+  function increaseDate(){
+    $scope.date = new Date($scope.date.getFullYear(),$scope.date.getMonth(),$scope.date.getDate()+1)
+    console.log( "test" )
+    generateDates();
+  }
+  
+  $scope.increaseDate = increaseDate
   
   function checkCount(goal){
     a = $scope.goal_entries.filter(function(el){
@@ -71,8 +92,30 @@ goalsapp.controller('GoalsCtrl', function GoalsCtrl($scope,Goal,GoalEntry){
   $scope.checkCount = checkCount
   
   function longestChain( goal){
-    
-    return 0
+    a = $scope.goal_entries.filter(function(el){
+      return el.goal_id == goal.id
+    }).sort(function(a,b){
+      return Date.parse(a.occured_on) - Date.parse(b.occured_on)
+    })
+    if (a == 1 || a == 0){
+      return a.length
+    }
+    cur_chain = 1
+    max_chain = 0
+    //Loop through the goals incrementing chains
+    for (var i=1; i < a.length; i++) {
+      if ( Math.round((Date.parse(a[i].occured_on) - Date.parse(a[i-1].occured_on)) / (60*60*24*1000) ) == 1  ) {
+        cur_chain += 1
+      } else {
+        if ( max_chain < cur_chain ){
+          max_chain = cur_chain
+        }
+        cur_chain = 1
+      }
+    };
+    if ( cur_chain > max_chain )
+      max_chain = cur_chain
+    return max_chain
   }
   
   $scope.longestChain = longestChain
@@ -80,9 +123,17 @@ goalsapp.controller('GoalsCtrl', function GoalsCtrl($scope,Goal,GoalEntry){
   function currentChain( goal){
     a = $scope.goal_entries.filter(function(el){
       return el.goal_id == goal.id
+    }).sort(function(a,b){
+      return Date.parse(b.occured_on) - Date.parse(a.occured_on)
     })
+    i = 0
+    c = 1
+    while ( a[i+1] && (Date.parse(a[i].occured_on) - Date.parse( a[i+1].occured_on )) / (60*60*24*1000) == 1 ){
+      c += 1
+      i += 1
+    }
     
-    return a.length
+    return c;
   }
   
   $scope.currentChain = currentChain
