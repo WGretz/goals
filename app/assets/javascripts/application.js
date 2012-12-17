@@ -12,6 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ui.all
+//= require angular.min
+//= require angular-resource.min
+//= require angular-ui.min
 //= require_tree .
 
 $(function(){
@@ -34,11 +38,12 @@ $(function(){
   
 })
 
-goalsapp = angular.module('goalsapp',['ngResource'])
+goalsapp = angular.module('goalsapp',['ngResource','ui'])
 
 goalsapp.controller('GoalsCtrl', function GoalsCtrl($scope,Goal,GoalEntry){
   $scope.dates = []
   $scope.date = new Date()
+  $scope.showHide = false
   
   function generateDates(){
     var dates = []
@@ -171,6 +176,12 @@ goalsapp.controller('GoalsCtrl', function GoalsCtrl($scope,Goal,GoalEntry){
   }
   
   $scope.goalEntryClick = goalEntryClick
+  
+  $scope.selectDate = function ( value, picker) {
+    $scope.showHide = false
+    $scope.date = new Date( Date.parse( value ) )
+    generateDates();
+  }
   
 })
 

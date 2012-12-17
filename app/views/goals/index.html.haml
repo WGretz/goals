@@ -10,6 +10,8 @@
       %th{"ng-repeat"=>"date in dates"} {{ pad(date.getMonth()+1,2) }}/{{ pad( date.getDate(),2) }}
       %th
         %i.icon-arrow-right{"ng-click" => "increaseDate()"}
+        %i.icon-calendar{"ng-click"=>"showHide=!showHide"}
+        .goalsCalendar{"ng-show"=>"showHide", "ui-date"=>'{onSelect:selectDate}', 'ng-model'=>'date'}
     %tr{"ng-repeat"=>"goal in goals"}
       %th {{ goal.name }}
       %td.goal-available{"ng-repeat"=>"date in dates", "ng-bind-html-unsafe" => "goalEntryIconsForDate( goal, date )", "ng-click"=>"goalEntryClick(goal,date)" }

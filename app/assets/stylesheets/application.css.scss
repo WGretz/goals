@@ -9,6 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
+ *= require jquery.ui.all
  */
 
 @import "bootstrap";
@@ -26,6 +27,9 @@
 }
 #goals td {
   text-align: center;
+}
+.goalsCalendar {
+  position: absolute;
 }
 @media only screen and (max-width: 800px) {
   #goals table, 

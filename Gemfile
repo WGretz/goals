@@ -23,6 +23,7 @@ gem 'jquery-rails'
 gem 'devise'
 gem 'haml'
 gem 'bootstrap_forms', git: 'https://github.com/WGretz/bootstrap_forms.git'
+gem 'jquery-ui-rails'
 
 group :test, :development do
   gem 'sqlite3'
