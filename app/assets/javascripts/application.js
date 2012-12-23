@@ -40,7 +40,7 @@ $(function(){
 
 goalsapp = angular.module('goalsapp',['ngResource','ui'])
 
-goalsapp.controller('GoalsCtrl', function GoalsCtrl($scope,Goal,GoalEntry){
+goalsapp.controller('GoalsCtrl', ["$scope", "Goal", "GoalEntry", function GoalsCtrl($scope,Goal,GoalEntry){
   $scope.dates = []
   $scope.date = new Date()
   $scope.showHide = false
@@ -183,17 +183,17 @@ goalsapp.controller('GoalsCtrl', function GoalsCtrl($scope,Goal,GoalEntry){
     generateDates();
   }
   
-})
+}])
 
-goalsapp.factory('Goal', function ($resource) {
+goalsapp.factory('Goal', ['$resource', function ($resource) {
     return $resource('api/v1/goals/:goalId', {}, {
         update: {method:'PUT'}
     });
-});
+}]);
 
-goalsapp.factory('GoalEntry', function ($resource) {
+goalsapp.factory('GoalEntry', ['$resource', function ($resource) {
     return $resource('api/v1/goal_entries/:id', {}, {
         update: {method:'PUT'}
     });
-});
+}]);
 
